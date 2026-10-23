@@ -1,4 +1,4 @@
-import { describe, it, expect } from '@jest/globals';
+import { describe, it, expect } from 'vitest';
 import { Colors } from '../src/constants/Colors';
 
 describe('Theme Colors System', () => {

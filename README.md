@@ -1,19 +1,20 @@
 # React Native Starter Kit 🚀
 
-> A modern, production-ready, cross-platform starter kit for **React Native (0.88+)** and **Expo (SDK 58+)**, powered by **Expo Router**, **React 19**, **TypeScript**, and the **New Architecture**.
+> A modern, production-ready, cross-platform starter kit for **React Native (0.88+)** and **Expo (SDK 58+)**, powered by **Expo Router**, **React 19**, **TypeScript**, **Vitest**, and the **New Architecture**.
 
 [![React Native](https://img.shields.io/badge/React%20Native-0.88-blue.svg)](https://reactnative.dev)
 [![Expo SDK](https://img.shields.io/badge/Expo%20SDK-58-black.svg)](https://expo.dev)
 [![React](https://img.shields.io/badge/React-19.3-61dafb.svg)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Strict-blue.svg)](https://www.typescriptlang.org)
-[![Tests](https://img.shields.io/badge/Tests-Jest-green.svg)](https://jestjs.io)
+[![Tests: Vitest](https://img.shields.io/badge/Tests-Vitest%20⚡-yellowgreen.svg)](https://vitest.dev)
+[![CI](https://github.com/nzmcno/ReactNative-Starter/actions/workflows/ci.yml/badge.svg)](https://github.com/nzmcno/ReactNative-Starter/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ---
 
 ## 📱 Overview
 
-This starter kit is designed to provide everything you need to jumpstart a modern React Native application. It eliminates legacy configuration headaches, provides strict type-safety, features a comprehensive theme system with dark mode persistence, and demonstrates real-world architectural patterns (CRUD state management, async REST API fetching, haptics, responsive styling).
+This starter kit provides a first-class foundation for modern React Native development. It eliminates legacy configuration bloat, enforces strict type-safety, features a comprehensive theme engine with dark mode persistence, and demonstrates real-world architectural patterns (CRUD state management, async REST API fetching, haptics, responsive styling, and sub-second testing with Vitest).
 
 Works seamlessly across **iOS**, **Android**, and **Web** with zero native setup required out of the box.
 
@@ -21,9 +22,10 @@ Works seamlessly across **iOS**, **Android**, and **Web** with zero native setup
 
 ## ✨ Features
 
-- ⚡ **React 19 & New Architecture**: Enabled by default with TurboModules and modern concurrent features.
-- 🗂️ **Type-Safe File-Based Routing**: Powered by **Expo Router**, featuring Native Tabs, Native Modals, and deep links.
+- ⚡ **React 19 & New Architecture**: TurboModules and synchronous layout bridging enabled by default.
+- 🗂️ **Type-Safe File-Based Routing**: Powered by **Expo Router v4**, featuring Native Tabs, Native Modals, and deep links.
 - 🎨 **Adaptive Theme System**: Light, Dark, and System modes with instant reactive switching and AsyncStorage caching.
+- ⚡ **Blazing Fast Testing with Vitest**: Replaces slow legacy runners with native ESM execution (~130ms test runs).
 - 🧱 **Reusable Component Library**:
   - `Button` (Primary, Secondary, Outline, Danger, Ghost, loading states, icons, haptic feedback)
   - `Card` (Elevated, outlined, flat variants with touch feedback)
@@ -34,7 +36,8 @@ Works seamlessly across **iOS**, **Android**, and **Web** with zero native setup
 - 💾 **Offline-First Persistence**: Strongly-typed `AsyncStorage` service caching items and preferences across restarts.
 - 🔄 **Modern CRUD Generator**: Modernized edition of the original list generator showcasing item creation, random generators, filtering, and deletion.
 - 🌐 **Async REST API Integration**: Pull-to-refresh feed fetching posts with search filtering and offline fallback data.
-- 🧪 **Unit Tests & Quality**: Jest test suites, strict TypeScript (`tsconfig.json`), ESLint, and Prettier configured.
+- 🤖 **AI-Agent Ready**: Includes [`AGENTS.md`](AGENTS.md) with guidelines for AI coding assistants.
+- 🔄 **CI/CD Automation**: GitHub Actions workflow verifying TypeScript, ESLint, Vitest, and Web bundle on every push and PR.
 - 📲 **Continuous Native Generation (CNG)**: Clean, zero-bloat repository. Generate pristine native `android/` and `ios/` folders anytime with `npx expo prebuild`.
 
 ---
@@ -43,6 +46,10 @@ Works seamlessly across **iOS**, **Android**, and **Web** with zero native setup
 
 ```text
 ReactNative-Starter/
+├── .github/                      # GitHub Actions CI & Issue templates
+│   ├── workflows/ci.yml          # Automated CI pipeline
+│   ├── ISSUE_TEMPLATE/           # Bug report & feature request forms
+│   └── pull_request_template.md  # Standardized PR checklist
 ├── app/                          # Expo Router file-based routes
 │   ├── (tabs)/                   # Bottom tab navigator
 │   │   ├── _layout.tsx           # Tab bar configuration & icons
@@ -56,7 +63,7 @@ ReactNative-Starter/
 │   └── +not-found.tsx            # 404 screen
 ├── assets/                       # Adaptive app icons, splash screens, demo media
 │   └── images/
-│       └── car.jpeg              # Starter media asset
+│       └── car.jpeg              # Preserved starter media asset
 ├── src/
 │   ├── components/
 │   │   └── ui/                   # Reusable UI component library
@@ -85,13 +92,16 @@ ReactNative-Starter/
 │   │   └── storage.ts            # Strongly-typed AsyncStorage wrapper
 │   └── types/
 │       └── index.ts              # Global TypeScript models & interfaces
-├── __tests__/                    # Jest test suites
+├── __tests__/                    # Vitest test suites
 │   ├── colors.test.ts            # Theme palette integrity tests
-│   └── items.test.ts             # State & filter logic tests
+│   ├── items.test.ts             # State & filter logic tests
+│   └── storage.test.ts           # AsyncStorage mock & service tests
+├── AGENTS.md                     # AI Agent guidelines & architecture rules
 ├── app.json                      # Expo project configuration
 ├── babel.config.js               # Babel preset configuration
 ├── metro.config.js               # Metro bundler configuration
 ├── tsconfig.json                 # TypeScript strict configuration
+├── vitest.config.mts             # Vitest test runner configuration
 └── package.json                  # Scripts & dependencies
 ```
 
@@ -101,7 +111,7 @@ ReactNative-Starter/
 
 ### Prerequisites
 
-- **Node.js**: `v18+` or `v20+` / `v22+` (managed via `nvm` or direct install)
+- **Node.js**: `v20+` or `v22+` (managed via `nvm` or direct install)
 - **Package Manager**: `npm`, `yarn`, `pnpm`, or `bun`
 - **Mobile Device or Simulator**:
   - Download the **Expo Go** app on your physical iOS (App Store) or Android (Google Play) phone, OR
@@ -138,14 +148,29 @@ Once the interactive CLI opens:
 
 | Command | Description |
 | :--- | :--- |
-| `npm start` | Starts the interactive Expo Metro bundler |
+| `npm start` | Starts the interactive Expo Metro development server |
 | `npm run ios` | Boots the app directly into iOS Simulator |
 | `npm run android` | Boots the app directly into Android Emulator |
 | `npm run web` | Bundles and runs the app in the web browser |
+| `npm test` | Runs all unit tests with **Vitest** |
+| `npm run test:watch` | Runs Vitest in interactive watch mode |
 | `npm run type-check` | Executes TypeScript type checking (`tsc --noEmit`) |
-| `npm run lint` | Runs ESLint across all files |
-| `npm test` | Runs Jest unit tests |
+| `npm run lint` | Runs ESLint across all source files |
 | `npm run prebuild` | Generates pristine native `ios/` and `android/` projects (CNG) |
+
+---
+
+## 🧪 Testing with Vitest
+
+Tests are configured with [Vitest](https://vitest.dev) for sub-second execution speed and native TypeScript/ESM support:
+
+```bash
+# Run tests once
+npm test
+
+# Run tests in watch mode
+npm run test:watch
+```
 
 ---
 
@@ -187,33 +212,33 @@ This will automatically create configured, build-ready `ios/` and `android/` fol
 
 ## 🇹🇷 Türkçe Özet & Başlangıç Rehberi
 
-Bu proje, eski 2019 React Native (0.60.4) yapısından tamamen arındırılarak modern, kurumsal standartlarda bir **React Native & Expo Starter Kit** haline getirilmiştir.
+Bu proje, eski 2019 React Native (0.60.4) yapısından tamamen arındırılarak modern standartlarda bir **React Native & Expo Starter Kit** haline getirilmiştir.
 
-### Neler Değiştirildi ve Eklendi?
-1. **Güncel Altyapı**: Expo SDK 58, React 19.3 ve React Native 0.88 ile New Architecture (TurboModules) desteği aktif hale getirildi.
-2. **Tip Güvenliği (TypeScript)**: Katı tip denetimi (`strict: true`) ve temiz import alias'ları (`@/...`) eklendi.
-3. **Expo Router**: Sayfalar dosya tabanlı rota (`app/`) mimarisine geçirildi. Native alt sekmeler (Tabs), modal ekranlar ve 404 sayfası hazırlandı.
-4. **Tema Sistemi**: Açık (Light), Koyu (Dark) ve Sistem modu destekli, AsyncStorage ile hafızada saklanan tema motoru kuruldu.
-5. **Modern Bileşen Kütüphanesi**: `Button`, `Card`, `Input`, `Badge`, `Modal`, `EmptyState`, `LoadingSpinner` gibi yeniden kullanılabilir UI bileşenleri yazıldı.
-6. **Yenilenmiş CRUD / Liste Üreteci**: Orijinal projedeki random generator yapısı; arama, filtreleme (Tümü, Aktif, Tamamlanan) ve kalıcı yerel hafıza (AsyncStorage) ile modernize edildi.
-7. **REST API Entegrasyonu**: Sayfayı aşağı çekip yenilemeli (pull-to-refresh) canlı veri çekme ekranı eklendi.
-8. **Test & Kalite**: Jest birim testleri, ESLint ve Prettier kuralları tamamlandı.
+### Neler Yapıldı?
+1. **Modern Altyapı**: Expo SDK 58, React 19.3 ve React Native 0.88 ile New Architecture (TurboModules) desteği aktif.
+2. **Vitest Test Motoru**: Yavaş çalışan eski test araçları yerine **Vitest** entegre edildi. Testler ~130ms gibi yüksek bir hızda çalışır (`npm test`).
+3. **AI Agent Standartları ([`AGENTS.md`](AGENTS.md))**: AI kodlama asistanlarının (Antigravity, Cursor, Copilot vb.) projeyi hatasız anlayıp geliştirmesi için mimari kurallar tanımlandı.
+4. **CI/CD Pipeline**: GitHub Actions iş akışı ile her push/PR işleminde tip denetimi, linting, Vitest ve web bundle derleme kontrolü sağlandı.
+5. **Temiz Repozituvar**: Eski PR'ların tamamı kapatıldı ve kullanılmayan dependabot branch'leri silinerek repo tertemiz hale getirildi.
+6. **Dosya Tabanlı Rota (Expo Router v4)**: `app/` altında sekmeler, modal ve 404 sayfası.
+7. **Kalıcı Tema Sistemi**: Açık (Light), Koyu (Dark) ve Sistem modu destekli, AsyncStorage ile saklanan tema motoru.
+8. **UI Bileşenleri**: `Button`, `Card`, `Input`, `Badge`, `Modal`, `EmptyState`, `LoadingSpinner`.
+9. **CRUD / Liste Üreteci**: Arama, filtreleme ve kalıcı yerel hafıza ile modernize edildi.
 
 ### Nasıl Çalıştırılır?
 ```bash
-# 1. Proje dizinine girin
-cd ReactNative-Starter
-
-# 2. Paketleri yükleyin
+# Bağımlılıkları yükleyin
 npm install
 
-# 3. Geliştirme sunucusunu başlatın
+# Testleri çalıştırın
+npm test
+
+# Uygulamayı başlatın
 npm start
 ```
-Terminalde çıkan QR kodu telefonunuzdaki **Expo Go** uygulamasıyla okutarak veya `w` tuşuna basarak tarayıcınızda anında test edebilirsiniz!
 
 ---
 
 ## 📄 License
 
-MIT License. Feel free to use this template for personal learning or commercial production apps.
+[MIT License](LICENSE) © 2026 nzmcno.

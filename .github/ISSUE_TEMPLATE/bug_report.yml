@@ -1,0 +1,38 @@
+name: 🐛 Bug Report
+description: Create a report to help us improve the starter kit
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for reporting an issue! Please provide as much detail as possible.
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: How can we reproduce this behavior?
+      placeholder: |
+        1. Run 'npm start'
+        2. Navigate to '...'
+        3. See error
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - iOS (Simulator)
+        - iOS (Physical Device via Expo Go)
+        - Android (Emulator)
+        - Android (Physical Device via Expo Go)
+        - Web
+    validations:
+      required: true
