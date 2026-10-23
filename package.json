@@ -1,28 +1,46 @@
 {
-  "name": "IlkTestProje",
-  "version": "0.0.1",
-  "private": true,
+  "name": "react-native-starter",
+  "version": "1.0.0",
+  "description": "A modern, production-ready React Native starter kit powered by Expo, Expo Router, TypeScript, and modern mobile architectural patterns.",
+  "main": "expo-router/entry",
   "scripts": {
-    "start": "react-native start",
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint .",
     "test": "jest",
-    "lint": "eslint ."
+    "prebuild": "expo prebuild"
   },
   "dependencies": {
-    "react": "16.8.6",
-    "react-native": "0.60.4",
-    "react-scripts": "^3.1.0"
+    "@expo/vector-icons": "^15.1.1",
+    "@react-native-async-storage/async-storage": "^2.2.0",
+    "expo": "~58.0.17",
+    "expo-constants": "~58.0.13",
+    "expo-font": "~58.0.9",
+    "expo-haptics": "~58.0.7",
+    "expo-linking": "~58.0.14",
+    "expo-router": "~58.0.25",
+    "expo-splash-screen": "~58.0.11",
+    "expo-status-bar": "~58.0.4",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-native": "0.88.0",
+    "react-native-reanimated": "^4.7.1",
+    "react-native-safe-area-context": "~5.10.1",
+    "react-native-screens": "~4.30.0",
+    "react-native-web": "^0.21.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/runtime": "^7.5.5",
-    "@react-native-community/eslint-config": "^0.0.5",
-    "babel-jest": "^24.8.0",
-    "eslint": "^6.1.0",
-    "jest": "^24.8.0",
-    "metro-react-native-babel-preset": "^0.55.0",
-    "react-test-renderer": "16.8.6"
+    "@types/jest": "^29.5.14",
+    "@types/react": "~19.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "eslint": "^8.57.1",
+    "jest": "^29.7.0",
+    "prettier": "^3.9.10",
+    "typescript": "~6.0.3"
   },
-  "jest": {
-    "preset": "react-native"
-  }
+  "private": true
 }
